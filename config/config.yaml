@@ -1,0 +1,11 @@
+data:
+  raw_path: "data/raw/student_data.xlsx"
+  target_column: "final grade"
+  test_size: 0.2
+
+  cv_folds: 5
+  scoring: "neg_root_mean_squared_error"
+  random_state: 42
+
+model:
+  output_path: "model/"
