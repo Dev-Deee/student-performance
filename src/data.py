@@ -12,7 +12,6 @@ class Ingestor:
     #     return df
 
     def load_raw_data(self) -> pd.DataFrame:
-        # path = Path(raw_path)
         if not self.raw_path.exists():
             raise FileNotFoundError(f"Raw file not found at: {self.raw_path}")
 
@@ -23,5 +22,10 @@ class Ingestor:
             df = pd.read_csv(self.raw_path, sep=None, engine="python")
         else:
             raise ValueError(f"Unsupported file type: {suffix}")
-
         return df
+
+    @staticmethod
+    def split_features_target(df: pd.DataFrame, target_column: str):
+        X = df.drop(columns=[target_column])
+        y = df[target_column]
+        return X, y

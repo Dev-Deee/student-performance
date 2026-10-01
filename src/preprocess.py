@@ -33,12 +33,6 @@ class Preprocessor:
         print(f"Renamed {len(self.COLUMN_RENAME_MAP)} columns to readable names.")
         return renamed
 
-    @staticmethod
-    def split_features_target(df: pd.DataFrame, target_column: str):
-        X = df.drop(columns=[target_column])
-        y = df[target_column]
-        return X, y
-
     def build_preprocessor(self, X: pd.DataFrame) -> ColumnTransformer:
         categorical_cols = X.select_dtypes(include="object").columns.tolist()
         numeric_cols = X.select_dtypes(include="number").columns.tolist()
